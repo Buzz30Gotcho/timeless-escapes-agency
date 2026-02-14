@@ -171,10 +171,10 @@ const Dashboard = () => {
             <div className="bg-card border border-border p-5">
               <h4 className="text-xs text-muted-foreground font-body uppercase tracking-wider mb-3">Navigation</h4>
               <div className="space-y-2">
-                <button onClick={() => navigate("/#destinations")} className="w-full text-left text-sm text-muted-foreground font-body hover:text-primary transition-colors flex items-center gap-2">
+                <button onClick={() => { navigate("/"); setTimeout(() => document.querySelector("#destinations")?.scrollIntoView({ behavior: "smooth" }), 300); }} className="w-full text-left text-sm text-muted-foreground font-body hover:text-primary transition-colors flex items-center gap-2">
                   <MapPin className="h-3.5 w-3.5" /> Voir les destinations
                 </button>
-                <button onClick={() => navigate("/#experiences")} className="w-full text-left text-sm text-muted-foreground font-body hover:text-primary transition-colors flex items-center gap-2">
+                <button onClick={() => { navigate("/"); setTimeout(() => document.querySelector("#experiences")?.scrollIntoView({ behavior: "smooth" }), 300); }} className="w-full text-left text-sm text-muted-foreground font-body hover:text-primary transition-colors flex items-center gap-2">
                   <PlaneTakeoff className="h-3.5 w-3.5" /> Nos expériences
                 </button>
               </div>
