@@ -1,12 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import DestinationCards from "@/components/DestinationCards";
+import ChatbotWidget from "@/components/ChatbotWidget";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <HeroSection />
+      <DestinationCards />
+      <ChatbotWidget />
+
+      {/* Footer */}
+      <footer className="border-t border-border py-12 px-6">
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-heading text-sm text-muted-foreground tracking-wider">
+            © 2026 Chronos Temporal Voyages
+          </p>
+          <p className="text-xs text-muted-foreground font-body tracking-widest uppercase">
+            Time is the ultimate luxury
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
