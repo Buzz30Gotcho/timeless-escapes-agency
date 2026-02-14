@@ -26,7 +26,7 @@ const HeroSection = () => {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="mb-4 text-sm tracking-[0.4em] uppercase text-primary font-body"
         >
-          Luxury Time Travel Since 2024
+          Voyages Temporels de Luxe
         </motion.p>
 
         <motion.h1
@@ -35,9 +35,9 @@ const HeroSection = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="font-heading text-5xl md:text-7xl lg:text-8xl font-semibold leading-tight"
         >
-          <span className="text-foreground">Journey Beyond</span>
+          <span className="text-foreground">Voyagez Au-Delà</span>
           <br />
-          <span className="text-gradient-gold italic">Time Itself</span>
+          <span className="text-gradient-gold italic">Du Temps</span>
         </motion.h1>
 
         <motion.p
@@ -46,8 +46,8 @@ const HeroSection = () => {
           transition={{ delay: 0.9, duration: 0.8 }}
           className="mt-6 max-w-lg text-muted-foreground font-body text-base md:text-lg leading-relaxed"
         >
-          Experience history's greatest moments firsthand. 
-          Curated temporal voyages for the discerning traveler.
+          Découvrez les plus grands moments de l'Histoire. 
+          Paris 1889, le Crétacé, Florence 1504 — trois époques, une expérience inoubliable.
         </motion.p>
 
         <motion.div
@@ -56,12 +56,12 @@ const HeroSection = () => {
           transition={{ delay: 1.2, duration: 0.8 }}
           className="mt-10 flex flex-col sm:flex-row gap-4"
         >
-          <button className="bg-primary text-primary-foreground px-10 py-4 text-sm tracking-widest uppercase font-body hover:shadow-gold transition-all duration-500">
-            Explore Eras
-          </button>
-          <button className="border border-border text-foreground px-10 py-4 text-sm tracking-widest uppercase font-body hover:border-primary hover:text-primary transition-all duration-500">
-            Our Story
-          </button>
+          <a href="#destinations" className="bg-primary text-primary-foreground px-10 py-4 text-sm tracking-widest uppercase font-body hover:shadow-gold transition-all duration-500">
+            Explorer les Époques
+          </a>
+          <a href="#booking" className="border border-border text-foreground px-10 py-4 text-sm tracking-widest uppercase font-body hover:border-primary hover:text-primary transition-all duration-500">
+            Réserver un Voyage
+          </a>
         </motion.div>
       </div>
 
