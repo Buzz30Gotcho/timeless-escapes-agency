@@ -7,75 +7,44 @@ const Footer = () => {
   const { user } = useAuth();
 
   return (
-    <footer className="border-t border-border py-16 px-6">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <Clock className="h-5 w-5 text-primary" />
-              <span className="font-heading text-lg font-semibold tracking-wider text-foreground">
-                TimeLess Escapes Agency
-              </span>
-            </div>
-            <p className="text-sm text-muted-foreground font-body leading-relaxed">
-              Pionniers du voyage temporel depuis 2024. Le temps est le luxe ultime.
-            </p>
-          </div>
-
-          {/* Destinations */}
-          <div>
-            <h4 className="font-heading text-sm font-semibold text-foreground tracking-wider uppercase mb-4">
-              Destinations
-            </h4>
-            <ul className="space-y-3">
-              <li><a href="/destination/paris-1889" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">Paris 1889</a></li>
-              <li><a href="/destination/cretaceous" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">Crétacé</a></li>
-              <li><a href="/destination/florence-1504" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">Florence 1504</a></li>
-            </ul>
-          </div>
-
-
-          {/* Compte */}
-          <div>
-            <h4 className="font-heading text-sm font-semibold text-foreground tracking-wider uppercase mb-4">
-              Compte
-            </h4>
-            <ul className="space-y-3">
-              {user ? (
-                <li>
-                  <button onClick={() => navigate("/dashboard")} className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">
-                    Mon Espace
-                  </button>
-                </li>
-              ) : (
-                <li>
-                  <button onClick={() => navigate("/auth")} className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">
-                    Créer un compte
-                  </button>
-                </li>
-              )}
-            </ul>
-          </div>
+    <footer className="border-t border-border py-10 px-6">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Brand */}
+        <div className="flex items-center gap-2">
+          <Clock className="h-4 w-4 text-primary" />
+          <span className="font-heading text-sm font-semibold tracking-wider text-foreground">
+            TimeLess Escapes Agency
+          </span>
         </div>
 
-        <div className="border-t border-border pt-8 flex flex-col items-center gap-4">
-          <p className="text-sm md:text-base text-muted-foreground font-body">
-            Développé par{" "}
-            <a
-              href="https://github.com/Buzz30Gotcho?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary font-semibold hover:underline"
-            >
-              Frédéric Makha Sar
-            </a>
-            {" "}— Développeur Full Stack
-          </p>
-          <p className="text-xs text-muted-foreground font-body">
-            © 2026 TimeLess Escapes Agency. Tous droits réservés.
-          </p>
+        {/* Links */}
+        <div className="flex items-center gap-6 text-sm font-body text-muted-foreground">
+          <a href="/destination/paris-1889" className="hover:text-primary transition-colors">Paris 1889</a>
+          <a href="/destination/cretaceous" className="hover:text-primary transition-colors">Crétacé</a>
+          <a href="/destination/florence-1504" className="hover:text-primary transition-colors">Florence 1504</a>
+          {user ? (
+            <button onClick={() => navigate("/dashboard")} className="hover:text-primary transition-colors">
+              Mon Espace
+            </button>
+          ) : (
+            <button onClick={() => navigate("/auth")} className="hover:text-primary transition-colors">
+              Créer un compte
+            </button>
+          )}
         </div>
+
+        {/* Credits */}
+        <p className="text-xs text-muted-foreground font-body">
+          © 2026{" "}
+          <a
+            href="https://github.com/Buzz30Gotcho?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            Frédéric Makha Sar
+          </a>
+        </p>
       </div>
     </footer>
   );
