@@ -111,9 +111,9 @@ cd <YOUR_PROJECT_NAME>
 
 # Étape 3 : Installer les dépendances
 npm install
-```
-Deploiement : 
-URL de la webapp déployée : https://timelessagency.lovable.app
 
 # Étape 4 : Lancer le serveur de développement
 npm run dev
+```
+### Deploiement de la webapp : 
+URL : https://timelessagency.lovable.app
