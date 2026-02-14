@@ -1,54 +1,143 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Clock } from "lucide-react";
+import { MessageCircle, X, Send, Clock, Loader2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 interface Message {
-  id: number;
-  text: string;
-  sender: "user" | "bot";
+  role: "user" | "assistant";
+  content: string;
 }
 
-const botResponses = [
-  "Bienvenue, voyageur. Je serais ravi de vous aider à choisir l'époque parfaite pour votre voyage.",
-  "Notre forfait Paris 1889 inclut un accès VIP à l'Exposition Universelle et une montée privée de la Tour Eiffel.",
-  "Pour les amateurs de sensations fortes, le Crétacé offre une expérience unique d'observation des dinosaures en toute sécurité.",
-  "Florence 1504 est idéale pour les passionnés d'art — vous pourrez assister au dévoilement du David de Michel-Ange.",
-  "Tous les voyages incluent une tenue d'époque sur mesure et un billet retour quantique stabilisé. Souhaitez-vous une consultation avec un concierge ?",
-];
+const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chatbot`;
+
+async function streamChat({
+  messages,
+  onDelta,
+  onDone,
+  onError,
+}: {
+  messages: Message[];
+  onDelta: (text: string) => void;
+  onDone: () => void;
+  onError: (msg: string) => void;
+}) {
+  const resp = await fetch(CHAT_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+    },
+    body: JSON.stringify({ messages }),
+  });
+
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({ error: "Erreur réseau" }));
+    onError(err.error || "Une erreur est survenue");
+    return;
+  }
+
+  if (!resp.body) { onError("Pas de réponse"); return; }
+
+  const reader = resp.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let done = false;
+
+  while (!done) {
+    const { done: readerDone, value } = await reader.read();
+    if (readerDone) break;
+    buffer += decoder.decode(value, { stream: true });
+
+    let idx: number;
+    while ((idx = buffer.indexOf("\n")) !== -1) {
+      let line = buffer.slice(0, idx);
+      buffer = buffer.slice(idx + 1);
+      if (line.endsWith("\r")) line = line.slice(0, -1);
+      if (line.startsWith(":") || line.trim() === "") continue;
+      if (!line.startsWith("data: ")) continue;
+      const jsonStr = line.slice(6).trim();
+      if (jsonStr === "[DONE]") { done = true; break; }
+      try {
+        const parsed = JSON.parse(jsonStr);
+        const content = parsed.choices?.[0]?.delta?.content as string | undefined;
+        if (content) onDelta(content);
+      } catch {
+        buffer = line + "\n" + buffer;
+        break;
+      }
+    }
+  }
+
+  if (buffer.trim()) {
+    for (let raw of buffer.split("\n")) {
+      if (!raw) continue;
+      if (raw.endsWith("\r")) raw = raw.slice(0, -1);
+      if (!raw.startsWith("data: ")) continue;
+      const jsonStr = raw.slice(6).trim();
+      if (jsonStr === "[DONE]") continue;
+      try {
+        const parsed = JSON.parse(jsonStr);
+        const content = parsed.choices?.[0]?.delta?.content as string | undefined;
+        if (content) onDelta(content);
+      } catch { /* ignore */ }
+    }
+  }
+
+  onDone();
+}
 
 const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: 0,
-      text: "Bonsoir. Je suis votre concierge Chronos. Comment puis-je vous aider pour votre voyage temporel ?",
-      sender: "bot",
+      role: "assistant",
+      content: "Bonsoir. Je suis votre concierge Chronos. Comment puis-je vous aider pour votre voyage temporel ?",
     },
   ]);
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const responseIndex = useRef(0);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleSend = () => {
-    if (!input.trim()) return;
+  const handleSend = async () => {
+    if (!input.trim() || isLoading) return;
 
-    const userMsg: Message = { id: Date.now(), text: input, sender: "user" };
-    setMessages((prev) => [...prev, userMsg]);
+    const userMsg: Message = { role: "user", content: input };
+    const newMessages = [...messages, userMsg];
+    setMessages(newMessages);
     setInput("");
+    setIsLoading(true);
 
-    setTimeout(() => {
-      const botMsg: Message = {
-        id: Date.now() + 1,
-        text: botResponses[responseIndex.current % botResponses.length],
-        sender: "bot",
-      };
-      responseIndex.current++;
-      setMessages((prev) => [...prev, botMsg]);
-    }, 1000);
+    let assistantSoFar = "";
+
+    const upsertAssistant = (chunk: string) => {
+      assistantSoFar += chunk;
+      setMessages((prev) => {
+        const last = prev[prev.length - 1];
+        if (last?.role === "assistant" && prev.length > newMessages.length) {
+          return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: assistantSoFar } : m));
+        }
+        return [...prev.slice(0, newMessages.length), { role: "assistant", content: assistantSoFar }];
+      });
+    };
+
+    try {
+      await streamChat({
+        messages: newMessages,
+        onDelta: upsertAssistant,
+        onDone: () => setIsLoading(false),
+        onError: (msg) => {
+          setMessages((prev) => [...prev, { role: "assistant", content: `⚠️ ${msg}` }]);
+          setIsLoading(false);
+        },
+      });
+    } catch {
+      setMessages((prev) => [...prev, { role: "assistant", content: "⚠️ Une erreur est survenue. Veuillez réessayer." }]);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -81,19 +170,32 @@ const ChatbotWidget = () => {
             </div>
 
             <div className="flex-1 overflow-y-auto p-4 space-y-3" style={{ maxHeight: 340 }}>
-              {messages.map((msg) => (
-                <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
+              {messages.map((msg, i) => (
+                <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div
                     className={`max-w-[80%] px-4 py-2.5 text-sm font-body leading-relaxed ${
-                      msg.sender === "user"
+                      msg.role === "user"
                         ? "bg-primary text-primary-foreground"
                         : "bg-secondary text-secondary-foreground"
                     }`}
                   >
-                    {msg.text}
+                    {msg.role === "assistant" ? (
+                      <div className="prose prose-sm prose-invert max-w-none [&_p]:m-0 [&_ul]:m-0 [&_ol]:m-0 [&_li]:m-0">
+                        <ReactMarkdown>{msg.content}</ReactMarkdown>
+                      </div>
+                    ) : (
+                      msg.content
+                    )}
                   </div>
                 </div>
               ))}
+              {isLoading && messages[messages.length - 1]?.role === "user" && (
+                <div className="flex justify-start">
+                  <div className="bg-secondary text-secondary-foreground px-4 py-2.5 text-sm">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  </div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
 
@@ -103,12 +205,14 @@ const ChatbotWidget = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                  placeholder="Posez votre question..."
-                  className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 text-sm font-body outline-none border border-border focus:border-primary transition-colors"
+                  placeholder="Posez-moi vos questions sur les voyages temporels..."
+                  disabled={isLoading}
+                  className="flex-1 bg-secondary text-foreground placeholder:text-muted-foreground px-4 py-2.5 text-sm font-body outline-none border border-border focus:border-primary transition-colors disabled:opacity-50"
                 />
                 <button
                   onClick={handleSend}
-                  className="flex h-10 w-10 items-center justify-center bg-primary text-primary-foreground hover:shadow-gold transition-all"
+                  disabled={isLoading}
+                  className="flex h-10 w-10 items-center justify-center bg-primary text-primary-foreground hover:shadow-gold transition-all disabled:opacity-50"
                 >
                   <Send className="h-4 w-4" />
                 </button>
