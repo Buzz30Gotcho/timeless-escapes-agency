@@ -28,7 +28,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-4">
               <Clock className="h-5 w-5 text-primary" />
               <span className="font-heading text-lg font-semibold tracking-wider text-foreground">
-                CHRONOS
+                TimeLess Escapes
               </span>
             </div>
             <p className="text-sm text-muted-foreground font-body leading-relaxed">
@@ -60,7 +60,7 @@ const Footer = () => {
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground font-body">
-            © 2026 Chronos — Voyages Temporels. Tous droits réservés.
+            © 2026 TimeLess Escapes Agency. Tous droits réservés.
           </p>
           <p className="text-xs text-muted-foreground font-body tracking-widest uppercase">
             Le temps est le luxe ultime
