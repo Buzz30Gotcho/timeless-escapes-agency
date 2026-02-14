@@ -23,7 +23,7 @@ const Auth = () => {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         toast({ title: "Bienvenue !", description: "Connexion réussie." });
-        navigate("/");
+        navigate("/dashboard");
       } else {
         const { error } = await supabase.auth.signUp({
           email,
