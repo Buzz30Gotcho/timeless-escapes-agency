@@ -73,14 +73,28 @@ const Footer = () => {
               Contact
             </h4>
             <div className="h-px w-8 bg-primary/40" />
-            <a
-              href="https://www.linkedin.com/in/frederic-sar-a377061a3/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-body text-primary font-semibold hover:underline"
-            >
-              Frédéric Makha Sar
-            </a>
+            <ul className="space-y-2.5 text-sm font-body">
+              <li>
+                <a
+                  href="https://github.com/Buzz30Gotcho?tab=repositories"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary font-semibold hover:underline"
+                >
+                  Frédéric Makha Sar
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/frederic-sar-a377061a3/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary font-semibold hover:underline"
+                >
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
             {!user && (
               <button
                 onClick={() => navigate("/auth")}
