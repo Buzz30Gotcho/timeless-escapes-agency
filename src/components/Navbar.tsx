@@ -24,7 +24,6 @@ const Navbar = () => {
   const links = [
     { label: "Destinations", href: "#destinations" },
     { label: "Expériences", href: "#experiences" },
-    { label: "Contact", href: "#contact" },
   ];
 
   const handleSignOut = async () => {
