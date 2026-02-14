@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import DestinationCards from "@/components/DestinationCards";
-import WhyChronos from "@/components/WhyChronos";
+import WhyTimelessEscapesAgency from "@/components/WhyTimelessEscapesAgency";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import Footer from "@/components/Footer";
 
@@ -11,7 +11,7 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <DestinationCards />
-      <WhyChronos />
+      <WhyTimelessEscapesAgency />
       <ChatbotWidget />
       <Footer />
     </div>
