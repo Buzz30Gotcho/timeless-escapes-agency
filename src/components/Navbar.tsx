@@ -16,8 +16,9 @@ const Navbar = () => {
   };
 
   const handleNavClick = (href: string) => {
-    if (href.startsWith("#")) {
-      // If not on homepage, navigate there first
+    if (href === "/") {
+      navigate("/");
+    } else if (href.startsWith("#")) {
       if (window.location.pathname !== "/") {
         navigate("/" + href);
       } else {
@@ -28,6 +29,7 @@ const Navbar = () => {
   };
 
   const links = [
+    { label: "Accueil", href: "/" },
     { label: "Destinations", href: "#destinations" },
     { label: "Expériences", href: "#experiences" },
   ];
