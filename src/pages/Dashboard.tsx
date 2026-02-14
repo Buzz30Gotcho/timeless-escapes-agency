@@ -22,6 +22,7 @@ const Dashboard = () => {
   const [saving, setSaving] = useState(false);
 
   const [selectedDest, setSelectedDest] = useState(destinations[0].id);
+  const [showDescription, setShowDescription] = useState(false);
   const [date, setDate] = useState("");
   const [travelers, setTravelers] = useState(1);
   const [bookingLoading, setBookingLoading] = useState(false);
@@ -198,7 +199,7 @@ const Dashboard = () => {
                     <button
                       type="button"
                       key={d.id}
-                      onClick={() => setSelectedDest(d.id)}
+                      onClick={() => { setSelectedDest(d.id); setShowDescription(true); }}
                       className={`relative overflow-hidden border transition-all text-left group ${
                         selectedDest === d.id
                           ? "border-primary ring-1 ring-primary/30"
@@ -227,11 +228,18 @@ const Dashboard = () => {
                 </div>
 
                 {/* Selected destination description */}
-                <div className="bg-secondary/50 border border-border px-4 py-3">
-                  <p className="text-sm text-muted-foreground font-body leading-relaxed">
-                    {selected.description}
-                  </p>
-                </div>
+                {showDescription && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-secondary/50 border border-border px-4 py-3"
+                  >
+                    <p className="text-sm text-muted-foreground font-body leading-relaxed">
+                      {selected.description}
+                    </p>
+                  </motion.div>
+                )}
 
                 {/* Date + travelers row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
