@@ -8,6 +8,7 @@ import { destinations } from "@/data/destinations";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import ChatbotWidget from "@/components/ChatbotWidget";
+import DestinationQuiz from "@/components/DestinationQuiz";
 
 const Dashboard = () => {
   const { user, loading } = useAuth();
@@ -277,6 +278,9 @@ const Dashboard = () => {
                 </button>
               </form>
             </div>
+
+            {/* Destination Quiz */}
+            <DestinationQuiz />
 
             {/* Bookings list */}
             <div>
