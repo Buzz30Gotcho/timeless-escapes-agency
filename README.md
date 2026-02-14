@@ -80,7 +80,7 @@ Voici quelques captures d’écran du projet **Timeless Escape Agency** :
 ![Dashboard 2](public/dashboard_2.png)
 
 ### 🎟️ Page de réservation
-![Réservation](public/reserve.png)
+![Réservation](public/reserve_voyage.png)
 
 ### 🤖 Chatbot intégré
 ![Chatbot](public/chatbot.png)
