@@ -33,7 +33,6 @@ const Navbar = () => {
   const links = [
     { label: "Accueil", href: "/" },
     { label: "Destinations", href: "#destinations" },
-    { label: "Expériences", href: "#experiences" },
     { label: "À propos", href: "/about" },
   ];
 
