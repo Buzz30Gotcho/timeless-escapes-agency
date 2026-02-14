@@ -64,20 +64,21 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground font-body">
-            © 2026 TimeLess Escapes Agency. Tous droits réservés.
-          </p>
-          <p className="text-xs text-muted-foreground font-body">
+        <div className="border-t border-border pt-8 flex flex-col items-center gap-4">
+          <p className="text-sm md:text-base text-muted-foreground font-body">
             Développé par{" "}
             <a
               href="https://github.com/Buzz30Gotcho?tab=repositories"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-primary font-semibold hover:underline"
             >
               Frédéric Makha Sar
             </a>
+            {" "}— Développeur Full Stack
+          </p>
+          <p className="text-xs text-muted-foreground font-body">
+            © 2026 TimeLess Escapes Agency. Tous droits réservés.
           </p>
         </div>
       </div>
