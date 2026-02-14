@@ -1,9 +1,18 @@
 import { motion } from "framer-motion";
 import { Clock, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const links = [
+    { label: "Destinations", href: "#destinations" },
+    { label: "Réservation", href: "#booking" },
+    { label: "Expériences", href: "#experiences" },
+    { label: "Contact", href: "#contact" },
+  ];
 
   return (
     <motion.nav
@@ -13,7 +22,11 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-glass border-b border-border"
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <a href="/" className="flex items-center gap-3">
+        <a
+          href="/"
+          onClick={(e) => { e.preventDefault(); navigate("/"); }}
+          className="flex items-center gap-3"
+        >
           <Clock className="h-6 w-6 text-primary" />
           <span className="font-heading text-xl font-semibold tracking-wider text-foreground">
             CHRONOS
@@ -21,18 +34,21 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {["Destinations", "Experiences", "About", "Contact"].map((item) => (
+          {links.map((item) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.label}
+              href={item.href}
               className="text-sm font-body tracking-widest uppercase text-muted-foreground hover:text-primary transition-colors duration-300"
             >
-              {item}
+              {item.label}
             </a>
           ))}
-          <button className="border border-primary text-primary px-6 py-2 text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300">
-            Book Journey
-          </button>
+          <a
+            href="#booking"
+            className="border border-primary text-primary px-6 py-2 text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+          >
+            Réserver
+          </a>
         </div>
 
         <button
@@ -50,14 +66,14 @@ const Navbar = () => {
           className="md:hidden bg-glass border-t border-border"
         >
           <div className="flex flex-col items-center gap-6 py-8">
-            {["Destinations", "Experiences", "About", "Contact"].map((item) => (
+            {links.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.label}
+                href={item.href}
                 className="text-sm tracking-widest uppercase text-muted-foreground hover:text-primary transition-colors"
                 onClick={() => setIsOpen(false)}
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>
