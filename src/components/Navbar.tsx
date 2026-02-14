@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const links = [
     { label: "Destinations", href: "#destinations" },
-    { label: "Pourquoi Chronos", href: "#why-chronos" },
+    { label: "Expériences", href: "#experiences" },
     { label: "Contact", href: "#contact" },
   ];
 
