@@ -1,36 +1,36 @@
 import { motion } from "framer-motion";
-import { Shield, Clock, Gem, Users } from "lucide-react";
+import { Globe, Compass, HeartHandshake, Headphones } from "lucide-react";
 
 const reasons = [
   {
-    icon: Shield,
-    title: "Sécurité Absolue",
+    icon: Globe,
+    title: "Destinations Uniques",
     description:
-      "Notre technologie quantique garantit un retour stable à 99,99%. Chaque voyage est supervisé par nos ingénieurs temporels certifiés.",
+      "Des voyages soigneusement sélectionnés vers des lieux et des époques extraordinaires. Chaque destination est une expérience culturelle inoubliable.",
   },
   {
-    icon: Clock,
-    title: "Précision Temporelle",
+    icon: Compass,
+    title: "Itinéraires Sur Mesure",
     description:
-      "Arrivez à la seconde près dans l'époque de votre choix. Notre calibrage temporel est le plus précis de l'industrie.",
+      "Chaque voyage est personnalisé selon vos envies : visites privées, rencontres exclusives et accès privilégiés aux sites les plus emblématiques.",
   },
   {
-    icon: Gem,
-    title: "Expérience Sur Mesure",
+    icon: HeartHandshake,
+    title: "Accompagnement Premium",
     description:
-      "Chaque voyage est personnalisé : tenues d'époque, guide personnel, accès exclusifs aux événements historiques majeurs.",
+      "Des guides experts passionnés vous accompagnent tout au long de votre séjour pour une immersion authentique et enrichissante.",
   },
   {
-    icon: Users,
-    title: "Concierge Dédié",
+    icon: Headphones,
+    title: "Conciergerie 24/7",
     description:
-      "Un concierge temporel vous accompagne avant, pendant et après votre voyage pour une expérience sans souci.",
+      "Un concierge dédié à votre disposition avant, pendant et après votre voyage pour une tranquillité d'esprit totale.",
   },
 ];
 
-const WhyChronos = () => {
+const WhyTimelessEscapesAgency = () => {
   return (
-    <section className="py-24 md:py-32 px-6 border-t border-border">
+    <section id="experiences" className="py-24 md:py-32 px-6 border-t border-border">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -40,13 +40,13 @@ const WhyChronos = () => {
           className="text-center mb-16"
         >
           <p className="text-primary text-sm tracking-[0.4em] uppercase font-body mb-3">
-            L'Excellence Temporelle
+            Notre Engagement
           </p>
           <h2 className="font-heading text-4xl md:text-5xl font-semibold text-foreground">
-            Pourquoi Choisir TimeLess Escapes ?
+            Pourquoi Choisir TimeLess Escapes Agency ?
           </h2>
           <p className="text-muted-foreground font-body mt-4 max-w-2xl mx-auto">
-            Depuis 2024, nous repoussons les limites du voyage temporel pour offrir des expériences inoubliables en toute sécurité.
+            Depuis 2024, nous créons des voyages d'exception alliant découverte culturelle, confort et service personnalisé.
           </p>
         </motion.div>
 
@@ -77,4 +77,4 @@ const WhyChronos = () => {
   );
 };
 
-export default WhyChronos;
+export default WhyTimelessEscapesAgency;
