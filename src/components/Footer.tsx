@@ -1,8 +1,10 @@
 import { Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   return (
     <footer className="border-t border-border py-16 px-6">
@@ -40,16 +42,19 @@ const Footer = () => {
               Compte
             </h4>
             <ul className="space-y-3">
-              <li>
-                <button onClick={() => navigate("/auth")} className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">
-                  Connexion
-                </button>
-              </li>
-              <li>
-                <button onClick={() => navigate("/auth?mode=signup")} className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">
-                  Inscription
-                </button>
-              </li>
+              {user ? (
+                <li>
+                  <button onClick={() => navigate("/dashboard")} className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">
+                    Mon Espace
+                  </button>
+                </li>
+              ) : (
+                <li>
+                  <button onClick={() => navigate("/auth")} className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">
+                    Créer un compte
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </div>
