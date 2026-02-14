@@ -64,11 +64,12 @@ const Dashboard = () => {
       destination_id: selectedDest,
       departure_date: date,
       travelers,
+      status: "confirmed",
     });
     if (error) {
       toast({ title: "Erreur", description: error.message, variant: "destructive" });
     } else {
-      toast({ title: "Réservation envoyée !" });
+      toast({ title: "Réservation confirmée ! ✓" });
       setDate("");
       setTravelers(1);
       const { data } = await supabase.from("bookings").select("*").eq("user_id", user.id).order("created_at", { ascending: false });
