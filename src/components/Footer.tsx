@@ -70,21 +70,17 @@ const Footer = () => {
           {/* Contact */}
           <div className="space-y-4">
             <h4 className="font-heading text-xs font-semibold tracking-[0.2em] uppercase text-primary">
-              À propos
+              Contact
             </h4>
             <div className="h-px w-8 bg-primary/40" />
-            <p className="text-sm font-body text-muted-foreground leading-relaxed">
-              Cliquez sur{" "}
-              <a
-                href="https://github.com/Buzz30Gotcho?tab=repositories"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary font-semibold hover:underline"
-              >
-                Frédéric Makha Sar
-              </a>{" "}
-              pour en apprendre plus sur moi.
-            </p>
+            <a
+              href="https://www.linkedin.com/in/frederic-sar-a377061a3/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-body text-primary font-semibold hover:underline"
+            >
+              Frédéric Makha Sar
+            </a>
             {!user && (
               <button
                 onClick={() => navigate("/auth")}
