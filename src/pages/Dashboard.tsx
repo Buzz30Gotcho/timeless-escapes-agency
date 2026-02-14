@@ -316,10 +316,9 @@ const Dashboard = () => {
                         </span>
                         <button
                           onClick={() => handleCancel(b.id)}
-                          className="opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-destructive transition-all shrink-0"
-                          title="Annuler"
+                          className="text-xs font-body uppercase tracking-wider px-4 py-2 border border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground transition-all shrink-0"
                         >
-                          <X className="h-4 w-4" />
+                          Annuler
                         </button>
                       </motion.div>
                     );
