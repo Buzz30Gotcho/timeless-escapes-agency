@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import DestinationCards from "@/components/DestinationCards";
 import WhyTimelessEscapesAgency from "@/components/WhyTimelessEscapesAgency";
+import DestinationQuiz from "@/components/DestinationQuiz";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import Footer from "@/components/Footer";
 
@@ -28,6 +29,9 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <DestinationCards />
+      <section className="container mx-auto px-6 py-16">
+        <DestinationQuiz />
+      </section>
       <WhyTimelessEscapesAgency />
       <ChatbotWidget />
       <Footer />
