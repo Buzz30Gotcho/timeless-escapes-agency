@@ -1,24 +1,9 @@
 import { Clock } from "lucide-react";
-
-const footerLinks = {
-  Destinations: [
-    { label: "Paris 1889", href: "/destination/paris-1889" },
-    { label: "Crétacé", href: "/destination/cretaceous" },
-    { label: "Florence 1504", href: "/destination/florence-1504" },
-  ],
-  Entreprise: [
-    { label: "À Propos", href: "#" },
-    { label: "Carrières", href: "#" },
-    { label: "Presse", href: "#" },
-  ],
-  Support: [
-    { label: "Contact", href: "#" },
-    { label: "FAQ", href: "#" },
-    { label: "Conditions", href: "#" },
-  ],
-};
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="border-t border-border py-16 px-6">
       <div className="container mx-auto">
@@ -36,34 +21,63 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Link columns */}
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h4 className="font-heading text-sm font-semibold text-foreground tracking-wider uppercase mb-4">
-                {title}
-              </h4>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-muted-foreground font-body hover:text-primary transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Destinations */}
+          <div>
+            <h4 className="font-heading text-sm font-semibold text-foreground tracking-wider uppercase mb-4">
+              Destinations
+            </h4>
+            <ul className="space-y-3">
+              <li><a href="/destination/paris-1889" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">Paris 1889</a></li>
+              <li><a href="/destination/cretaceous" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">Crétacé</a></li>
+              <li><a href="/destination/florence-1504" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">Florence 1504</a></li>
+            </ul>
+          </div>
+
+          {/* Entreprise */}
+          <div>
+            <h4 className="font-heading text-sm font-semibold text-foreground tracking-wider uppercase mb-4">
+              Entreprise
+            </h4>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">À Propos</a></li>
+              <li><a href="#contact" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          {/* Compte */}
+          <div>
+            <h4 className="font-heading text-sm font-semibold text-foreground tracking-wider uppercase mb-4">
+              Compte
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <button onClick={() => navigate("/auth")} className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">
+                  Connexion
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/auth")} className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">
+                  Inscription
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground font-body">
             © 2026 TimeLess Escapes Agency. Tous droits réservés.
           </p>
-          <p className="text-xs text-muted-foreground font-body tracking-widest uppercase">
-            Le temps est le luxe ultime
+          <p className="text-xs text-muted-foreground font-body">
+            Développé par{" "}
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              Votre Nom
+            </a>
           </p>
         </div>
       </div>
