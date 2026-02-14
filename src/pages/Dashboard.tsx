@@ -226,6 +226,13 @@ const Dashboard = () => {
                   ))}
                 </div>
 
+                {/* Selected destination description */}
+                <div className="bg-secondary/50 border border-border px-4 py-3">
+                  <p className="text-sm text-muted-foreground font-body leading-relaxed">
+                    {selected.description}
+                  </p>
+                </div>
+
                 {/* Date + travelers row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
