@@ -9,8 +9,7 @@ const Navbar = () => {
 
   const links = [
     { label: "Destinations", href: "#destinations" },
-    { label: "Réservation", href: "#booking" },
-    { label: "Expériences", href: "#experiences" },
+    { label: "Pourquoi Chronos", href: "#why-chronos" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -43,12 +42,12 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
-          <a
-            href="#booking"
+          <button
+            onClick={() => navigate("/auth")}
             className="border border-primary text-primary px-6 py-2 text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
           >
-            Réserver
-          </a>
+            Connexion
+          </button>
         </div>
 
         <button
