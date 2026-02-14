@@ -35,7 +35,7 @@ const Navbar = () => {
         >
           <Clock className="h-6 w-6 text-primary" />
           <span className="font-heading text-xl font-semibold tracking-wider text-foreground">
-            TimeLess Escapes
+            TimeLess Escapes Agency
           </span>
         </a>
 
