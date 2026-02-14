@@ -62,8 +62,14 @@ const Dashboard = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const selectedDate = new Date(date);
+    const maxDate = new Date();
+    maxDate.setFullYear(maxDate.getFullYear() + 2);
     if (selectedDate < today) {
       toast({ title: "Date invalide", description: "Veuillez choisir une date future.", variant: "destructive" });
+      return;
+    }
+    if (selectedDate > maxDate) {
+      toast({ title: "Date invalide", description: "La date ne peut pas dépasser 2 ans à partir d'aujourd'hui.", variant: "destructive" });
       return;
     }
 
@@ -264,6 +270,7 @@ const Dashboard = () => {
                       onChange={(e) => setDate(e.target.value)}
                       required
                       min={new Date().toISOString().split("T")[0]}
+                      max={new Date(new Date().setFullYear(new Date().getFullYear() + 2)).toISOString().split("T")[0]}
                       className="w-full bg-secondary text-foreground border border-border px-4 py-3 text-sm font-body outline-none focus:border-primary transition-colors"
                     />
                   </div>
