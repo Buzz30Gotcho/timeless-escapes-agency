@@ -89,16 +89,6 @@ const Footer = () => {
                   Frédéric Makha Sar
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/frederic-sar-a377061a3/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary font-semibold hover:underline"
-                >
-                  LinkedIn
-                </a>
-              </li>
             </ul>
             {!user && (
               <button
