@@ -43,7 +43,7 @@ const WhyChronos = () => {
             L'Excellence Temporelle
           </p>
           <h2 className="font-heading text-4xl md:text-5xl font-semibold text-foreground">
-            Pourquoi Choisir Chronos ?
+            Pourquoi Choisir TimeLess Escapes ?
           </h2>
           <p className="text-muted-foreground font-body mt-4 max-w-2xl mx-auto">
             Depuis 2024, nous repoussons les limites du voyage temporel pour offrir des expériences inoubliables en toute sécurité.
