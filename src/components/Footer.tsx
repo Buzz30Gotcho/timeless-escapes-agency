@@ -40,7 +40,7 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li><a href="#" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">À Propos</a></li>
-              <li><a href="#contact" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="#experiences" className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">Nos Expériences</a></li>
             </ul>
           </div>
 
