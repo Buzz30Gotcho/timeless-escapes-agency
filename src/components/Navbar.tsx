@@ -18,6 +18,8 @@ const Navbar = () => {
   const handleNavClick = (href: string) => {
     if (href === "/") {
       navigate("/");
+    } else if (href.startsWith("/")) {
+      navigate(href);
     } else if (href.startsWith("#")) {
       if (window.location.pathname !== "/") {
         navigate("/" + href);
@@ -32,6 +34,7 @@ const Navbar = () => {
     { label: "Accueil", href: "/" },
     { label: "Destinations", href: "#destinations" },
     { label: "Expériences", href: "#experiences" },
+    { label: "À propos", href: "/about" },
   ];
 
   const handleSignOut = async () => {
