@@ -1,17 +1,24 @@
 import { motion } from "framer-motion";
-import { Clock, Menu, X } from "lucide-react";
+import { Clock, Menu, X, LogOut } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
 
   const links = [
     { label: "Destinations", href: "#destinations" },
     { label: "Pourquoi Chronos", href: "#why-chronos" },
     { label: "Contact", href: "#contact" },
   ];
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   return (
     <motion.nav
@@ -42,12 +49,22 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
-          <button
-            onClick={() => navigate("/auth")}
-            className="border border-primary text-primary px-6 py-2 text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-          >
-            Connexion
-          </button>
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="flex items-center gap-2 border border-primary text-primary px-6 py-2 text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            >
+              <LogOut className="h-4 w-4" />
+              Déconnexion
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate("/auth")}
+              className="border border-primary text-primary px-6 py-2 text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            >
+              Connexion
+            </button>
+          )}
         </div>
 
         <button
@@ -75,6 +92,21 @@ const Navbar = () => {
                 {item.label}
               </a>
             ))}
+            {user ? (
+              <button
+                onClick={() => { handleSignOut(); setIsOpen(false); }}
+                className="text-sm tracking-widest uppercase text-primary"
+              >
+                Déconnexion
+              </button>
+            ) : (
+              <button
+                onClick={() => { navigate("/auth"); setIsOpen(false); }}
+                className="text-sm tracking-widest uppercase text-primary"
+              >
+                Connexion
+              </button>
+            )}
           </div>
         </motion.div>
       )}
