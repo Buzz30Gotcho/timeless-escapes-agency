@@ -306,37 +306,81 @@ const Dashboard = () => {
                   <p className="text-muted-foreground/60 font-body text-xs mt-1">Choisissez une destination ci-dessus pour commencer</p>
                 </div>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-5">
                   {bookings.map((b, i) => {
                     const dest = destinations.find((d) => d.id === b.destination_id);
+                    const depDate = new Date(b.departure_date);
+                    const formattedDate = depDate.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+                    const createdDate = new Date(b.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" });
+
                     return (
                       <motion.div
                         key={b.id}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.05 }}
-                        className="flex items-center gap-4 p-4 border border-border bg-card group hover:border-primary/30 transition-colors"
+                        transition={{ delay: i * 0.08 }}
+                        className="bg-card border border-border overflow-hidden"
                       >
-                        {dest && (
-                          <img src={dest.image} alt={dest.title} className="h-14 w-14 object-cover shrink-0" />
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-heading text-base text-foreground">{dest?.title || b.destination_id}</h4>
-                          <p className="text-xs text-muted-foreground font-body">
-                            {new Date(b.departure_date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })} · {b.travelers} voyageur{b.travelers > 1 ? "s" : ""}
-                          </p>
+                        {/* Header */}
+                        <div className="flex items-center justify-between px-5 py-3 bg-secondary/40 border-b border-border">
+                          <div className="flex items-center gap-2">
+                            <PlaneTakeoff className="h-4 w-4 text-primary" />
+                            <span className="text-xs text-muted-foreground font-body uppercase tracking-wider">
+                              Réf. #{b.id.slice(0, 8).toUpperCase()}
+                            </span>
+                          </div>
+                          <span className={`text-xs font-body uppercase tracking-wider px-3 py-1 border ${
+                            b.status === "confirmed"
+                              ? "border-green-500/50 text-green-400 bg-green-500/10"
+                              : "border-primary/50 text-primary bg-primary/10"
+                          }`}>
+                            {b.status === "confirmed" ? "✓ Confirmé" : b.status === "pending" ? "En attente" : b.status}
+                          </span>
                         </div>
-                        <span className={`text-xs font-body uppercase tracking-wider px-3 py-1 border shrink-0 ${
-                          b.status === "confirmed" ? "border-green-500/50 text-green-400 bg-green-500/5" : "border-primary/50 text-primary bg-primary/5"
-                        }`}>
-                          {b.status === "pending" ? "En attente" : b.status === "confirmed" ? "Confirmé" : b.status}
-                        </span>
-                        <button
-                          onClick={() => handleCancel(b.id)}
-                          className="text-xs font-body uppercase tracking-wider px-4 py-2 border border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground transition-all shrink-0"
-                        >
-                          Annuler
-                        </button>
+
+                        <div className="flex flex-col sm:flex-row">
+                          {dest && (
+                            <div className="sm:w-48 h-32 sm:h-auto shrink-0 overflow-hidden">
+                              <img src={dest.image} alt={dest.title} className="h-full w-full object-cover" />
+                            </div>
+                          )}
+
+                          <div className="flex-1 p-5 space-y-4">
+                            <div>
+                              <h4 className="font-heading text-xl text-foreground">{dest?.title || b.destination_id}</h4>
+                              <p className="text-xs text-muted-foreground font-body mt-0.5">{dest?.era} · {dest?.year}</p>
+                            </div>
+
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                              <div>
+                                <p className="text-[10px] text-muted-foreground font-body uppercase tracking-wider mb-0.5">Départ</p>
+                                <p className="text-sm text-foreground font-body capitalize">{formattedDate}</p>
+                              </div>
+                              <div>
+                                <p className="text-[10px] text-muted-foreground font-body uppercase tracking-wider mb-0.5">Voyageurs</p>
+                                <p className="text-sm text-foreground font-body">{b.travelers} voyageur{b.travelers > 1 ? "s" : ""}</p>
+                              </div>
+                              <div>
+                                <p className="text-[10px] text-muted-foreground font-body uppercase tracking-wider mb-0.5">Durée</p>
+                                <p className="text-sm text-foreground font-body">{dest?.duration || "—"}</p>
+                              </div>
+                            </div>
+
+                            <div className="border-t border-border pt-3 flex items-end justify-between">
+                              <div>
+                                <p className="text-[10px] text-muted-foreground font-body uppercase tracking-wider">Prix estimé</p>
+                                <p className="text-lg font-heading text-primary">{dest?.price || "—"}</p>
+                                <p className="text-[10px] text-muted-foreground font-body mt-0.5">Réservé le {createdDate}</p>
+                              </div>
+                              <button
+                                onClick={() => handleCancel(b.id)}
+                                className="text-xs font-body uppercase tracking-wider px-4 py-2 border border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground transition-all shrink-0"
+                              >
+                                Annuler
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </motion.div>
                     );
                   })}
