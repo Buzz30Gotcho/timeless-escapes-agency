@@ -3,7 +3,29 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Clock, Shield, MapPin, Calendar } from "lucide-react";
 import { destinations } from "@/data/destinations";
 import Navbar from "@/components/Navbar";
-import BookingForm from "@/components/BookingForm";
+import { useAuth } from "@/contexts/AuthContext";
+
+const BookingCTA = ({ dest }: { dest: { title: string; price: string } }) => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  return (
+    <div className="sticky top-24 bg-card border border-border p-6 md:p-8">
+      <h3 className="font-heading text-2xl text-foreground mb-2">Réserver ce voyage</h3>
+      <p className="text-primary font-heading text-xl mb-6">{dest.price}</p>
+      <p className="text-muted-foreground font-body text-sm mb-6">
+        {user
+          ? "Accédez à votre espace pour réserver ce voyage et personnaliser votre expérience."
+          : "Connectez-vous pour réserver ce voyage et accéder à votre espace voyageur."}
+      </p>
+      <button
+        onClick={() => navigate(user ? "/dashboard" : "/auth")}
+        className="w-full bg-primary text-primary-foreground py-4 text-sm tracking-widest uppercase font-body hover:shadow-gold transition-all duration-500"
+      >
+        {user ? "Réserver depuis mon espace" : "Se connecter pour réserver"}
+      </button>
+    </div>
+  );
+};
 
 const DestinationDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -110,9 +132,9 @@ const DestinationDetail = () => {
             </motion.div>
           </div>
 
-          {/* Booking sidebar */}
+          {/* CTA sidebar */}
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}>
-            <BookingForm destination={dest} />
+            <BookingCTA dest={dest} />
           </motion.div>
         </div>
       </section>

@@ -50,13 +50,21 @@ const Navbar = () => {
             </a>
           ))}
           {user ? (
-            <button
-              onClick={handleSignOut}
-              className="flex items-center gap-2 border border-primary text-primary px-6 py-2 text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-            >
-              <LogOut className="h-4 w-4" />
-              Déconnexion
-            </button>
+            <>
+              <button
+                onClick={() => navigate("/dashboard")}
+                className="text-sm font-body tracking-widest uppercase text-muted-foreground hover:text-primary transition-colors duration-300"
+              >
+                Mon Espace
+              </button>
+              <button
+                onClick={handleSignOut}
+                className="flex items-center gap-2 border border-primary text-primary px-6 py-2 text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              >
+                <LogOut className="h-4 w-4" />
+                Déconnexion
+              </button>
+            </>
           ) : (
             <button
               onClick={() => navigate("/auth")}
@@ -93,12 +101,20 @@ const Navbar = () => {
               </a>
             ))}
             {user ? (
-              <button
-                onClick={() => { handleSignOut(); setIsOpen(false); }}
-                className="text-sm tracking-widest uppercase text-primary"
-              >
-                Déconnexion
-              </button>
+              <>
+                <button
+                  onClick={() => { navigate("/dashboard"); setIsOpen(false); }}
+                  className="text-sm tracking-widest uppercase text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Mon Espace
+                </button>
+                <button
+                  onClick={() => { handleSignOut(); setIsOpen(false); }}
+                  className="text-sm tracking-widest uppercase text-primary"
+                >
+                  Déconnexion
+                </button>
+              </>
             ) : (
               <button
                 onClick={() => { navigate("/auth"); setIsOpen(false); }}
