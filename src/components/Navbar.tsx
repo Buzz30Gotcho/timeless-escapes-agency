@@ -9,6 +9,18 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
 
+  const handleNavClick = (href: string) => {
+    if (href.startsWith("#")) {
+      // If not on homepage, navigate there first
+      if (window.location.pathname !== "/") {
+        navigate("/" + href);
+      } else {
+        const el = document.querySelector(href);
+        el?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   const links = [
     { label: "Destinations", href: "#destinations" },
     { label: "Expériences", href: "#experiences" },
@@ -41,13 +53,13 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-8">
           {links.map((item) => (
-            <a
+            <button
               key={item.label}
-              href={item.href}
+              onClick={() => handleNavClick(item.href)}
               className="text-sm font-body tracking-widest uppercase text-muted-foreground hover:text-primary transition-colors duration-300"
             >
               {item.label}
-            </a>
+            </button>
           ))}
           {user ? (
             <>
@@ -91,14 +103,13 @@ const Navbar = () => {
         >
           <div className="flex flex-col items-center gap-6 py-8">
             {links.map((item) => (
-              <a
+              <button
                 key={item.label}
-                href={item.href}
+                onClick={() => { handleNavClick(item.href); setIsOpen(false); }}
                 className="text-sm tracking-widest uppercase text-muted-foreground hover:text-primary transition-colors"
-                onClick={() => setIsOpen(false)}
               >
                 {item.label}
-              </a>
+              </button>
             ))}
             {user ? (
               <>
