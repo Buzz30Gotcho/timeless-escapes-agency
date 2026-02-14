@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import heroVideo from "@/assets/hero-video.mp4";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Video Background */}
@@ -59,9 +63,9 @@ const HeroSection = () => {
           <a href="#destinations" className="bg-primary text-primary-foreground px-10 py-4 text-sm tracking-widest uppercase font-body hover:shadow-gold transition-all duration-500">
             Explorer les Époques
           </a>
-          <a href="#booking" className="border border-border text-foreground px-10 py-4 text-sm tracking-widest uppercase font-body hover:border-primary hover:text-primary transition-all duration-500">
+          <button onClick={() => navigate(user ? "/dashboard" : "/auth")} className="border border-border text-foreground px-10 py-4 text-sm tracking-widest uppercase font-body hover:border-primary hover:text-primary transition-all duration-500">
             Réserver un Voyage
-          </a>
+          </button>
         </motion.div>
       </div>
 
