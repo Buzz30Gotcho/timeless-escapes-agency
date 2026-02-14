@@ -30,15 +30,27 @@ const DestinationCards = () => {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.7 }}
-              className="group relative bg-card border border-border overflow-hidden hover:border-primary/40 transition-all duration-500 cursor-pointer"
+              transition={{ delay: i * 0.15, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="group relative bg-card border border-border overflow-hidden cursor-pointer"
+              style={{ boxShadow: "0 0 0 0 hsl(var(--primary) / 0)" }}
+              onHoverStart={(e, info) => {
+                // handled by framer-motion whileHover
+              }}
               onClick={() => navigate(`/destination/${dest.id}`)}
             >
+              <motion.div
+                className="absolute inset-0 pointer-events-none border border-primary/0 z-10"
+                whileHover={{ borderColor: "hsl(var(--primary) / 0.4)" }}
+                transition={{ duration: 0.3 }}
+              />
               <div className="aspect-[3/4] overflow-hidden">
-                <img
+                <motion.img
                   src={dest.image}
                   alt={dest.title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover"
+                  whileHover={{ scale: 1.07 }}
+                  transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
               </div>
@@ -55,9 +67,13 @@ const DestinationCards = () => {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-primary font-heading text-lg">{dest.price}</span>
-                  <span className="text-xs tracking-widest uppercase text-foreground border-b border-primary pb-0.5 hover:text-primary transition-colors duration-300 font-body">
-                    Découvrir
-                  </span>
+                  <motion.span
+                    className="text-xs tracking-widest uppercase text-foreground border-b border-primary pb-0.5 font-body"
+                    whileHover={{ color: "hsl(var(--primary))", x: 4 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Découvrir →
+                  </motion.span>
                 </div>
               </div>
             </motion.div>
