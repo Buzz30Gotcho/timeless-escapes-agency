@@ -115,5 +115,5 @@ npm install
 # Étape 4 : Lancer le serveur de développement
 npm run dev
 ```
-### Deploiement de la webapp : 
+## 🚀 Deploiement de la webapp : 
 URL : https://timelessagency.lovable.app
