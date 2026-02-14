@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { destinations } from "@/data/destinations";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
+import ChatbotWidget from "@/components/ChatbotWidget";
 
 const Dashboard = () => {
   const { user, loading } = useAuth();
@@ -328,6 +329,7 @@ const Dashboard = () => {
           </motion.main>
         </div>
       </div>
+      <ChatbotWidget />
     </div>
   );
 };
