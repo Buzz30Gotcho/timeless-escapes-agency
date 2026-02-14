@@ -1,13 +1,19 @@
 import { motion } from "framer-motion";
-import { Clock, Menu, X, LogOut } from "lucide-react";
+import { Clock, Menu, X, LogOut, Sun, Moon } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   const handleNavClick = (href: string) => {
     if (href.startsWith("#")) {
@@ -60,6 +66,13 @@ const Navbar = () => {
               {item.label}
             </button>
           ))}
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-muted-foreground hover:text-primary transition-colors duration-300"
+            aria-label="Basculer le thème"
+          >
+            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </button>
           {user ? (
             <>
               <button
@@ -110,6 +123,13 @@ const Navbar = () => {
                 {item.label}
               </button>
             ))}
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-muted-foreground hover:text-primary transition-colors"
+              aria-label="Basculer le thème"
+            >
+              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
             {user ? (
               <>
                 <button
