@@ -9,15 +9,53 @@ Le site combine un **design élégant**, des **animations immersives** et une **
 
 ---
 
-## 🚀 Technologies utilisées
+## 🎨 Technologies utilisées
 
-- **Frontend :** React (selon version générée)
-- **CSS :** Tailwind CSS
-- **Backend :** Flask (Python), Node.js, PHP (microservices)
-- **Outils IA :** Chatbot intégré (IA générative)
-- **Base de données :** Supabase
-- **Génération d’interface :** v0.dev
-- **Vibe Coding Tool :** bolt.new
+### 🖥️ Frontend
+
+| Technologie | Rôle |
+|--------------|------|
+| **React 18 (TypeScript)** | Framework UI principal |
+| **Vite** | Bundler / serveur de développement rapide |
+| **Tailwind CSS** | Stylisation utility-first et responsive |
+| **shadcn/ui (Radix UI)** | Composants UI accessibles et élégants |
+| **Framer Motion** | Animations et transitions fluides |
+| **React Router v6** | Navigation et routage SPA |
+| **TanStack React Query** | Gestion des requêtes asynchrones |
+| **React Hook Form + Zod** | Formulaires dynamiques + validation |
+| **Lucide React** | Bibliothèque d’icônes |
+| **Recharts** | Graphiques et visualisation de données |
+
+---
+
+### ⚙️ Backend (Lovable Cloud)
+
+| Technologie | Rôle |
+|--------------|------|
+| **Supabase (PostgreSQL)** | Base de données relationnelle |
+| **Supabase Auth** | Authentification (email / password) |
+| **Edge Functions (Deno / TypeScript)** | Logique serveur (ex : chatbot IA) |
+| **Row Level Security (RLS)** | Sécurité des données par utilisateur |
+
+---
+
+### 🤖 Intelligence Artificielle
+
+| Technologie | Rôle |
+|--------------|------|
+| **Lovable AI Gateway** | Proxy vers les modèles IA (Gemini 3 Flash) |
+| **Chatbot "Concierge Chronos"** | Assistant conversationnel intégré à la webapp |
+
+---
+
+### 🛠️ Outils de développement
+
+| Outil | Rôle |
+|--------|------|
+| **TypeScript** | Typage statique et fiabilité du code |
+| **ESLint** | Linting et bonnes pratiques |
+| **Vitest** | Tests unitaires |
+| **Bun** | Gestionnaire de paquets rapide et moderne |
 
 ---
 
@@ -44,7 +82,7 @@ Le site combine un **design élégant**, des **animations immersives** et une **
 
 ---
 
-## 🧰 Instructions d’installation (si applicable)
+## 🧰 Instructions d’installation
 
 Pour exécuter le projet localement :  
 
