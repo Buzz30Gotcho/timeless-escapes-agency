@@ -6,6 +6,55 @@
 
 @layer base {
   :root {
+    --background: 40 20% 96%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 43 55% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 15% 90%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 40 10% 92%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 43 55% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 43 55% 48%;
+
+    --radius: 0.25rem;
+
+    --gold: 43 55% 48%;
+    --gold-light: 43 60% 65%;
+    --gold-dark: 43 50% 35%;
+    --cream: 40 20% 15%;
+
+    --sidebar-background: 40 15% 95%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 43 55% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 40 10% 90%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 40 15% 85%;
+    --sidebar-ring: 43 55% 48%;
+
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  .dark {
     --background: 0 0% 4%;
     --foreground: 40 20% 90%;
 
@@ -34,8 +83,6 @@
     --input: 40 10% 18%;
     --ring: 43 55% 54%;
 
-    --radius: 0.25rem;
-
     --gold: 43 55% 54%;
     --gold-light: 43 60% 70%;
     --gold-dark: 43 50% 38%;
@@ -49,9 +96,6 @@
     --sidebar-accent-foreground: 40 20% 90%;
     --sidebar-border: 40 10% 18%;
     --sidebar-ring: 43 55% 54%;
-
-    --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Inter', system-ui, sans-serif;
   }
 }
 
@@ -83,9 +127,13 @@
   }
 
   .bg-glass {
-    background: hsla(0, 0%, 7%, 0.7);
+    background: hsla(0, 0%, 100%, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+  }
+
+  .dark .bg-glass {
+    background: hsla(0, 0%, 7%, 0.7);
   }
 
   .shadow-gold {
