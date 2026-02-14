@@ -102,7 +102,7 @@ const Footer = () => {
             © 2026 TimeLess Escapes Agency — Tous droits réservés
           </p>
           <p className="text-xs text-muted-foreground font-body">
-            Développé par{" "}
+            Cliquez sur{" "}
             <a
               href="https://github.com/Buzz30Gotcho?tab=repositories"
               target="_blank"
@@ -110,7 +110,8 @@ const Footer = () => {
               className="text-primary font-semibold hover:underline"
             >
               Frédéric Makha Sar
-            </a>
+            </a>{" "}
+            pour en apprendre plus sur moi.
           </p>
         </div>
       </div>
