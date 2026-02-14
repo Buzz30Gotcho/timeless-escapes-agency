@@ -57,6 +57,11 @@ const Footer = () => {
                   Florence — 1504
                 </a>
               </li>
+              <li>
+                <button onClick={() => navigate("/about")} className="hover:text-primary transition-colors">
+                  À propos
+                </button>
+              </li>
               {user && (
                 <li>
                   <button onClick={() => navigate("/dashboard")} className="hover:text-primary transition-colors">
