@@ -83,7 +83,6 @@ const Footer = () => {
                 >
                   Frédéric Makha Sar
                 </a>
-                <span className="block text-xs text-muted-foreground">Développeur Full Stack</span>
               </li>
               <li>
                 <a
