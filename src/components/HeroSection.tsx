@@ -34,14 +34,28 @@ const HeroSection = () => {
         </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
           className="font-heading text-5xl md:text-7xl lg:text-8xl font-semibold leading-tight"
         >
-          <span className="text-foreground">Voyagez Au-Delà</span>
+          <motion.span
+            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-foreground inline-block"
+          >
+            Voyagez Au-Delà
+          </motion.span>
           <br />
-          <span className="text-gradient-gold italic">Du Temps</span>
+          <motion.span
+            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.8, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-gradient-gold italic inline-block"
+          >
+            Du Temps
+          </motion.span>
         </motion.h1>
 
         <motion.p
