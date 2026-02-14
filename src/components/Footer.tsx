@@ -71,12 +71,12 @@ const Footer = () => {
           <p className="text-xs text-muted-foreground font-body">
             Développé par{" "}
             <a
-              href="https://github.com/"
+              href="https://github.com/Buzz30Gotcho?tab=repositories"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
-              Votre Nom
+              Frédéric Makha Sar
             </a>
           </p>
         </div>
