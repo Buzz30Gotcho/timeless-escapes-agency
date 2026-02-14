@@ -1,4 +1,4 @@
-import { Clock, MapPin, Mail, Phone } from "lucide-react";
+import { Clock, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -70,48 +70,36 @@ const Footer = () => {
           {/* Contact */}
           <div className="space-y-4">
             <h4 className="font-heading text-xs font-semibold tracking-[0.2em] uppercase text-primary">
-              Contact
+              À propos
             </h4>
             <div className="h-px w-8 bg-primary/40" />
-            <ul className="space-y-2.5 text-sm font-body text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <Mail className="h-3.5 w-3.5 text-primary/70" />
-                contact@timeless-escapes.com
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-3.5 w-3.5 text-primary/70" />
-                +33 1 42 00 00 00
-              </li>
-              {!user && (
-                <li>
-                  <button
-                    onClick={() => navigate("/auth")}
-                    className="mt-2 inline-block border border-primary text-primary px-5 py-2 text-xs tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                  >
-                    Rejoindre l'aventure
-                  </button>
-                </li>
-              )}
-            </ul>
+            <p className="text-sm font-body text-muted-foreground leading-relaxed">
+              Cliquez sur{" "}
+              <a
+                href="https://github.com/Buzz30Gotcho?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary font-semibold hover:underline"
+              >
+                Frédéric Makha Sar
+              </a>{" "}
+              pour en apprendre plus sur moi.
+            </p>
+            {!user && (
+              <button
+                onClick={() => navigate("/auth")}
+                className="mt-2 inline-block border border-primary text-primary px-5 py-2 text-xs tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              >
+                Rejoindre l'aventure
+              </button>
+            )}
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="mt-12 pt-6 border-t border-border flex items-center justify-center">
           <p className="text-xs text-muted-foreground font-body">
             © 2026 TimeLess Escapes Agency — Tous droits réservés
-          </p>
-          <p className="text-xs text-muted-foreground font-body">
-            Cliquez sur{" "}
-            <a
-              href="https://github.com/Buzz30Gotcho?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary font-semibold hover:underline"
-            >
-              Frédéric Makha Sar
-            </a>{" "}
-            pour en apprendre plus sur moi.
           </p>
         </div>
       </div>
