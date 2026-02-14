@@ -56,7 +56,7 @@ const Footer = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate("/auth")} className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">
+                <button onClick={() => navigate("/auth?mode=signup")} className="text-sm text-muted-foreground font-body hover:text-primary transition-colors">
                   Inscription
                 </button>
               </li>
