@@ -50,7 +50,7 @@ const DestinationDetail = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative h-[70vh] w-full overflow-hidden">
+      <section className="relative h-[50vh] w-full overflow-hidden">
         <img src={dest.image} alt={dest.title} className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/20" />
 
@@ -86,7 +86,7 @@ const DestinationDetail = () => {
       </section>
 
       {/* Content */}
-      <section className="py-16 px-6">
+      <section className="py-8 px-6">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main content */}
           <div className="lg:col-span-2 space-y-10">
