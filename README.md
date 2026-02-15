@@ -5,7 +5,7 @@
 **Timeless Escape Agency** est une webapp moderne et interactive permettant aux utilisateurs de découvrir, personnaliser et réserver des **voyages temporels**.  
 L’application offre une expérience immersive à travers trois époques emblématiques : **Paris 1889**, **le Crétacé**, et **Florence 1504**.  
 
-Le site combine un **design élégant**, des **animations immersives** et une **intégration d’intelligence artificielle** pour guider l’utilisateur dans son voyage à travers le temps.
+Le site combine un **design élégant**, des **animations immersives** et une **intégration d’intelligence artificielle** pour guider la personne dans son voyage à travers le temps.
 
 ---
 
@@ -63,11 +63,27 @@ Le site combine un **design élégant**, des **animations immersives** et une **
 
 - **Page d’accueil immersive** avec vidéo ou animation de fond  
 - **Trois cartes de destinations interactives** : Paris 1889, Crétacé, Florence 1504  
-- **Chatbot IA intégré** pour conseiller et guider l’utilisateur  
+- **Chatbot IA intégré** pour conseiller et guider la personne  
 - **FAQ automatisée** alimentée par l’IA  
 - **Formulaire de réservation intelligent** avec validation automatique  
 - **Mode sombre / clair** selon le système de l’utilisateur  
 - **Design responsive mobile-first**
+
+---
+
+## 🖼️ Aperçu du projet
+
+Voici quelques captures d’écran du projet **Timeless Escape Agency** :  
+
+### 🧭 Tableau de bord
+![Dashboard 1](public/dashboard_1.png)
+![Dashboard 2](public/dashboard_2.png)
+
+### 🎟️ Page de réservation
+![Réservation](public/reserve_voyage.png)
+
+### 🤖 Chatbot intégré
+![Chatbot](public/chatbot.png)
 
 ---
 
@@ -98,3 +114,6 @@ npm install
 
 # Étape 4 : Lancer le serveur de développement
 npm run dev
+```
+## 🚀 Deploiement de la webapp : 
+URL : https://timelessagency.lovable.app

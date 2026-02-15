@@ -18,6 +18,8 @@ const Navbar = () => {
   const handleNavClick = (href: string) => {
     if (href === "/") {
       navigate("/");
+    } else if (href.startsWith("/")) {
+      navigate(href);
     } else if (href.startsWith("#")) {
       if (window.location.pathname !== "/") {
         navigate("/" + href);
@@ -31,7 +33,7 @@ const Navbar = () => {
   const links = [
     { label: "Accueil", href: "/" },
     { label: "Destinations", href: "#destinations" },
-    { label: "Expériences", href: "#experiences" },
+    { label: "À propos", href: "/about" },
   ];
 
   const handleSignOut = async () => {
@@ -52,7 +54,7 @@ const Navbar = () => {
           onClick={(e) => { e.preventDefault(); navigate("/"); }}
           className="flex items-center gap-3"
         >
-          <Clock className="h-6 w-6 text-primary" />
+          <img src="/favicon.png" alt="TimeLess Escapes" className="h-7 w-7 rounded" />
           <span className="font-heading text-xl font-semibold tracking-wider text-foreground">
             TimeLess Escapes Agency
           </span>

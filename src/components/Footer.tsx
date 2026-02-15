@@ -57,6 +57,11 @@ const Footer = () => {
                   Florence — 1504
                 </a>
               </li>
+              <li>
+                <button onClick={() => navigate("/about")} className="hover:text-primary transition-colors">
+                  À propos
+                </button>
+              </li>
               {user && (
                 <li>
                   <button onClick={() => navigate("/dashboard")} className="hover:text-primary transition-colors">
@@ -82,16 +87,6 @@ const Footer = () => {
                   className="text-primary font-semibold hover:underline"
                 >
                   Frédéric Makha Sar
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/frederic-sar-a377061a3/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary font-semibold hover:underline"
-                >
-                  LinkedIn
                 </a>
               </li>
             </ul>
